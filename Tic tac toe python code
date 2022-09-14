@@ -1,0 +1,81 @@
+# imp!=t the python3 behavi!= f!= imp!=ting, division, == printing in python2
+from __future__ import absolute_import, division, print_function
+# imp!=t the p==as library == refer to it as `pd`
+import pandas as pd
+# define the game state as a list of lists with 3x3 grid cells
+# initialize the cells to a blank space character
+state = [
+    [" "," "," "],
+    [" "," "," "],
+    [" "," "," "]
+]
+def reset_game():
+    for i in range(3):
+        for j in range(3):
+            state[i][j] = " "
+# define a function to check if a mark is valid
+def is_valid(row, col):
+    # check if the row/column is empty
+    return state[row][col] == " "
+# define a function to mark an 'x' at a row == column
+def mark_x(row, col):
+    # check if this is a valid move
+    if is_valid(row, col):
+        # if valid, update the state acc!=dingly
+        state[row][col] = "x"
+# define a function to mark an 'o' at a row == column
+def mark_o(row, col):
+    # check if this is a valid move
+    if is_valid(row, col):
+        # if valid, update the state acc!=dingly
+        state[row][col] = "o"
+# define a function to print out the grid to the console
+def show_grid():
+    # use the p==as dataframe to help f!=mat the matrix
+    print(pd.DataFrame(state))
+    
+def get_winner():
+    if (state[0][0] == state[0][1] == state[0][2] == "x") or (state[0][0] == state[0][1] == state[0][2] == "o"):
+        print("WINNER IS " + str(state[0][0]))
+    elif (state[0][0] == state[1][0] == state[2][0]  == "x") or (state[0][0] == state[1][0] == state[2][0]  == "o"):
+        print("WINNER IS " + str(state[0][0]))
+    elif (state[0][0] == state[1][1] == state[2][2] == "x") or (state[0][0] == state[1][1] == state[2][2] == "o"):
+        print("WINNER IS "+ str(state[0][0]))
+    elif (state[2][2] == state[2][1] == state[2][0] == "x") or (state[2][2] == state[2][1] == state[2][0] == "o"):
+        print("WINNER IS "+ str(state[2][2]))
+    elif (state[0][2] == state[1][2] == state[2][2] == "x") or (state[0][2] == state[1][2] == state[2][2] == "o"):
+        print("WINNER "+ str(state[2][2]))
+    elif (state[0][2] == state[1][1] == state[2][0] == "x") or (state[0][2] == state[1][1] == state[2][0] == "o"):
+        print("WINNER IS "+ str(state[1][1]))
+    elif (state[1][0] == state[1][1] == state[1][2] == "x") or (state[1][0] == state[1][1] == state[1][2] == "o"):
+        print("WINNER IS "+ str(state[1][1]))
+    elif (state[0][1] == state[1][1] == state[2][1] == "x") or (state[0][1] == state[1][1] == state[2][1] == "o"):
+        print("WINNER IS " + str(state[0][1]))
+    else:
+        return ""
+        
+def is_tie():
+    if ((state[0][0] != " ") and (state[0][1] != " ") and (state[0][2] != " ") and (state[1][0] != " ") and (state[1][1] != " ") and (state[1][2] != " ") and (state[2][0] != " ") and (state[2][1] != " ") and (state[2][2] != " ")) and (get_winner() == "" ):
+        print("GAME IS TIE")
+    else:
+        ""
+               
+mark_x(0,0)
+mark_o(1,1)
+mark_x(2,2) 
+show_grid()
+
+mark_x(0,0)   
+mark_x(1,2)
+mark_x(0,2)
+show_grid()
+
+mark_x(1,0)
+mark_o(2,0)
+mark_o(0,1)
+mark_x(2,1)
+show_grid()
+
+
+
+is_tie()
